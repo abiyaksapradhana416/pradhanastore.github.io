@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pradhana Store - Toko Buku Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* CSS Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            
+            color: #333;
+        }
+
+        /* --- Header/Navbar Styling --- */
+        .navbar {
+            background-color: #007bff; /* Biru seperti di gambar */
+            color: white;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.3em;
+            margin-left: 15px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 3px 6px;
+            font-size: 0.75em;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        /* --- Hero Section Styling --- */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url( "download.jpg"); /* Abu-abu gelap */
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .hero-button {
+            background-color: #ffc107; /* Kuning */
+            color: #333;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .hero-button:hover {
+            background-color: #e0a800;
+        }
+
+        /* --- Image Search & Cart Button Positioning (Top Right) --- */
+        .top-right-buttons {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: flex-end;
+        }
+
+        .top-right-buttons button {
+            background-color: white;
+            color: #333;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9em;
+        }
+
+        /* --- Product Section Styling --- */
+        .products-section {
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .products-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .product-header-image {
+            width: 100%;
+            height: 200px;
+            background: url( "download (1).jpg") center center/cover;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: white;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: left;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .product-card h3 {
+            font-size: 1.1em;
+            margin: 5px 0;
+            height: 40px; /* Menjaga tinggi agar lebih rapi */
+            overflow: hidden;
+        }
+
+        .product-card .price {
+            font-weight: bold;
+            color: #007bff;
+            margin: 10px 0;
+            display: block;
+        }
+
+        .add-to-cart-btn {
+            background-color: #28a745; /* Hijau */
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.9em;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #1e7e34;
+        }
+
+        /* --- Footer Styling --- */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="#" class="navbar-brand">Pradhana Store</a>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Produk</a>
+            <div class="cart-icon" onclick="viewCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cart-item-count">0</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Selamat Datang di Pradhana Store</h1>
+            <p>Temukan buku pilihan terbaik dengan kualitas original bergaransi resmi.</p>
+            <a href="#products" class="hero-button">Lihat Produk</a>
+        </div>
+        
+        <div class="top-right-buttons">
+            <button onclick="showImageSearch()">
+                <i class="fas fa-search"></i>
+                Add Image
+            </button>
+        </div>
+    </div>
+
+    <div class="products-section">
+        <h2>Produk Kami</h2>
+        <div class="product-header-image"></div>
+        
+        <div class="product-list" id="products">
+            </div>
+    </div>
+
+    <footer>
+        &copy; 2025 Pradhana Store. Semua Hak Cipta Dilindungi.
+    </footer>
+
+    <script>
+        // Data Produk
+        const productsData = [
+            { id: 1, name: "Laskar Pelangi", price: 95000, image: "download (3).jpg"},
+            { id: 2, name: "Bumi Manusia", price: 100000, image: "download (4).jpg"},
+            { id: 3, name: "Filosofi Teras", price: 50000, image: "download (5).jpg"},
+            { id: 4, name: "Dilan 1990", price: 50000, image:  "download (6).jpg"},
+            { id: 5, name: "Sang Pemimpi", price: 95000, image:   "download (7).jpg"},
+            { id: 6, name: "Pulang", price: 120000, image:  "download (8).jpg" },
+            { id: 7, name: "Laut Bercerita", price: 50000, image:  "download (9).jpg"},
+            { id: 8, name: "Anak Semua Bangsa", price: 50000, image:  "download (10).jpg"},
+            { id: 9, name: "Cantik Itu Luka", price: 100000, image: "download (11).jpg"},
+            { id: 10, name: "Negeri 5 Menara", price: 95000, image: "download (12).jpg"},
+            { id: 11, name: "The Alchemist", price: 85000, image: "download (13).jpg"},
+            { id: 12, name: "Atonomic Habits", price: 75000, image: "download (14).jpg"},
+            { id: 13, name: "Bumi", price: 65000, image: "download (15).jpg"},
+            { id: 14, name: "Perahu Kertas", price: 75000, image: "download (16).jpg"},
+            { id: 15, name: "Kisah Tanah Jawa", price: 90000, image: "download (17).jpg"},
+            { id: 16, name: "Hujan", price: 60000, image: "download (18).jpg"},
+            { id: 17, name: "Garis Waktu", price: 70000, image: "download (19).jpg"},
+            { id: 18, name: "Dear Nathan", price: 80000, image: "download (20).jpg"},
+            { id: 19, name: "Manusia Setengah Salmon", price: 55000, image: "download (21).jpg"},
+            { id: 20, name: "Sapiens Riwayat Singkat Umat Manusia", price: 100000, image: "download (22).jpg"},  
+            { id: 21, name: "The Little Princess", price: 95000, image: "download (23).jpg"},
+            { id: 22, name: "Senja hujan cerita", price: 90000, image: "download (24).jpg"},
+            { id: 23, name: "Ayah", price: 80000, image: "download (25).jpg"},
+            { id: 24, name: "Anak Rantau", price: 60000, image: "download (26).jpg"},
+            { id: 25, name: "Sebuah Seni Untuk Bersikap Bodo Amat", price: 50000, image: "download (27).jpg"},
+            { id: 26, name: "Sebelum Hancur Lebur", price: 65000, image: "download (28).jpg"},
+            { id: 27, name: "Rindu", price: 55000, image: "download (29).jpg"},
+            { id: 28, name: "Habis Gelap Terbitlah Terang", price: 75000, image: "download (30).jpg"},
+            { id: 29, name: "Koala Kumal", price: 85000, image: "download (31).jpg"},
+            { id: 30, name: "Orang-orang Biasa", price: 80000, image: "download (32).jpg"},
+            
+            
+        ];
+
+        let cart = []; // Keranjang belanja
+        const productListDiv = document.getElementById('products');
+        const cartCountSpan = document.getElementById('cart-item-count');
+
+        // Fungsi untuk memformat harga menjadi Rupiah
+        function formatRupiah(number) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(number);
+        }
+
+        // 1. Render Produk ke Halaman
+        function renderProducts() {
+            productListDiv.innerHTML = productsData.map(product => `
+                <div class="product-card">
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <span class="price">${formatRupiah(product.price)}</span>
+                    <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
+                        <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // 2. Fungsi Tambah ke Keranjang
+        function addToCart(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (product) {
+                // Tambahkan produk ke keranjang
+                cart.push(product);
+                
+                // Update tampilan jumlah di keranjang
+                cartCountSpan.textContent = cart.length;
+
+                // Beri notifikasi sederhana
+                alert(`${product.name} berhasil ditambahkan ke keranjang! \nTotal item: ${cart.length}`);
+            }
+        }
+
+        // 3. Fungsi Lihat Keranjang
+        function viewCart() {
+            let cartDetails = "Isi Keranjang Belanja Anda:\n\n";
+            if (cart.length === 0) {
+                cartDetails = "Keranjang Anda kosong.";
+            } else {
+                let totalPrice = 0;
+                cart.forEach((item, index) => {
+                    cartDetails += `${index + 1}. ${item.name} - ${formatRupiah(item.price)}\n`;
+                    totalPrice += item.price;
+                });
+                cartDetails += `\nTotal Harga: ${formatRupiah(totalPrice)}`;
+            }
+            alert(cartDetails);
+        }
+
+        // 4. Fungsi Image Search (sesuai permintaan)
+        function showImageSearch() {
+            // Ini adalah implementasi sederhana dengan alert
+            alert("Fungsi 'Add Image' atau 'Image Search' terpicu. \n\nDi aplikasi nyata, ini akan membuka pop-up untuk mengunggah gambar atau memasukkan URL gambar untuk mencari produk serupa.");
+        }
+
+        // Panggil fungsi untuk menampilkan produk saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', renderProducts);
+
+    </script>
+</body>
+</html>
